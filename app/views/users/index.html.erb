@@ -1,0 +1,26 @@
+<div class="formatted-table">
+	<h1 class="premier-league">Premier League Football Table</h1>
+
+	<table style="width:100%">
+		<tr>
+			<th>S/n</th>
+			<th>Last Updated</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Title</th>
+			<th>Phone</th>
+			<th>Status</th>
+		</tr>
+		<% @users.each_with_index do |team, index| %>
+			<tr style="">
+				<td><%= index + 1 %></td>
+				<td><%= team.updated_at %></td>
+				<td><%= team.name %></td>
+				<td><%= team.email %></td>
+				<td><%= team.title %></td>
+				<td><%= team.phone %></td>
+				<td><%= team.status %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
