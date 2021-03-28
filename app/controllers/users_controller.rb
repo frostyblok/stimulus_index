@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def index; end
 
   def users_json
-    # binding.pry
     page = params[:page]
 
     if params[:sort]

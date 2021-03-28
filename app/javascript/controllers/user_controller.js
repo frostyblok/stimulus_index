@@ -278,7 +278,7 @@ export default class extends Controller {
 
 	close() {
 
-		let modal = document.getElementById('modal')
+		let modal = document.getElementById('modal');
 		modal.classList.remove("modal-open");
 		this.saveTarget.remove();
 		modal.removeAttribute("style");
@@ -289,8 +289,8 @@ export default class extends Controller {
 
 	getParameterByName(name, url = window.location.href) {
 		name = name.replace(/[\[\]]/g, '\\$&');
-		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-			results = regex.exec(url);
+		let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
 		if (!results) return null;
 		if (!results[2]) return '';
 		return decodeURIComponent(results[2].replace(/\+/g, ' '));
