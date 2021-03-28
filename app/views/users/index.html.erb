@@ -1,26 +1,63 @@
-<div class="formatted-table">
-	<h1 class="premier-league">Premier League Football Table</h1>
+<div id="hello" class="formatted-table" data-controller="user">
+	<h1 class="">USER INDEX TABLE</h1>
 
-	<table style="width:100%">
+	<button data-action="click->user#openModal">Create New User</button>
+
+	<table id="yess" style="width:100%" data-user-target="table">
 		<tr>
 			<th>S/n</th>
-			<th>Last Updated</th>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Title</th>
-			<th>Phone</th>
-			<th>Status</th>
+			<th><%= link_to "Last Updated", users_path(:sort => "updated_at"), data: {target: 'user.last'} %></th>
+			<th><%= link_to "Name", :sort => "name" %></th>
+			<th><%= link_to "Email", :sort => "email" %></th>
+			<th><%= link_to "Title", :sort => "title" %></th>
+			<th><%= link_to "Phone", :sort => "phone" %></th>
+			<th><%= link_to "Status", :sort => "status" %></th>
+			<th>Action</th>
 		</tr>
-		<% @users.each_with_index do |team, index| %>
-			<tr style="">
-				<td><%= index + 1 %></td>
-				<td><%= team.updated_at %></td>
-				<td><%= team.name %></td>
-				<td><%= team.email %></td>
-				<td><%= team.title %></td>
-				<td><%= team.phone %></td>
-				<td><%= team.status %></td>
-			</tr>
-		<% end %>
 	</table>
+
+	<div id="modal" class="modal" data-user-target="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="form-group">
+					<p>Name:</p>
+					<input type="text" data-user-target="name" />
+				</div>
+				<div class="form-group">
+					<p>Email:</p>
+					<input type="text" data-user-target="email" />
+				</div>
+				<div class="form-group">
+					<p>Title:</p>
+					<input type="text" data-user-target="title" />
+				</div>
+				<div class="form-group">
+					<p>Phone:</p>
+					<input type="text" data-user-target="phone" />
+				</div>
+				<div class="form-group">
+					<p>Status:</p>
+					<input type="text" data-user-target="status" />
+				</div>
+				<div class="save-button" data-user-target="saveUser">
+				</div>
+
+				<button data-action="click->user#close">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="delete-modal" class="modal" data-user-target="confirmModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<p>Confirm Delete?</p>
+				<div>
+					<button data-action="click->user#handleDeleteSuccess" data-user-target="save">Yes</button>
+					<button data-action="click->user#close">Cancel</button>
+				</div>
+
+				<button data-action="click->user#close">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
