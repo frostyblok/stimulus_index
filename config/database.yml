@@ -84,6 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: crm_production
-  username: crm
-  password: <%= ENV['CRM_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.credentials.dig(:production_db) %>
