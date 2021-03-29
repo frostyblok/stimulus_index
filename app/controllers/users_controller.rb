@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.where("name LIKE ?", "%#{params[:search]}%")
+    @users = User.where("name LIKE :search OR email LIKE :search", search: "%#{params[:search]}%")
 
     render json: { users: @users.page(params[:page]), total_pages: total_pages }, status: :ok
   end

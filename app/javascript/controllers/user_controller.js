@@ -173,8 +173,8 @@ export default class extends Controller {
 					this.render();
 				}
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(({message}) => {
+				console.log(message);
 				this.close();
 			});
 	}
@@ -190,10 +190,10 @@ export default class extends Controller {
 					this.render();
 				}
 			})
-			.catch((error) => {
+			.catch(({message}) => {
 				this.close();
 				this.render();
-				console.log(error)
+				console.log(message)
 			});
 	}
 
@@ -292,14 +292,31 @@ export default class extends Controller {
 		modal.insertAdjacentHTML('beforebegin', '<div class="modal-backdrop fade show"></div>')
 	}
 
-	close() {
+	closeModal(event) {
+		let modal;
 
-		let modal = document.getElementById('modal');
+		if (event) {
+			let element = event.target;
+			let dset = element.dataset;
+
+			if (dset.modalName === "delete-modal") {
+				modal = document.getElementById('delete-modal')
+			} else {
+				modal = document.getElementById('modal');
+			}
+		} else {
+			modal = document.getElementById('modal');
+		}
+
 		modal.classList.remove("modal-open");
 		this.saveTarget.remove();
 		modal.removeAttribute("style");
 		modal.classList.remove("show");
 		document.getElementsByClassName("modal-backdrop")[0].remove();
+	}
+
+	close() {
+		this.closeModal();
 		this.lastTarget.click();
 	}
 
