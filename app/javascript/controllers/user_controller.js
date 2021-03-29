@@ -14,7 +14,6 @@ export default class extends Controller {
 	}
 
 	search() {
-		// console.log("dkfjdkjf")
 		clearTimeout(this.timeout);
 		this.timeout = setTimeout(() => {
 			Rails.fire(this.formTarget, 'submit')
@@ -27,9 +26,6 @@ export default class extends Controller {
 		const users = JSON.parse(xhr.response).users;
 		$("#table > tbody:nth-child(2)").remove();
 		this.displayUsers(users)
-
-		// this.displayUsers()
-		// this.resultsTarget.innerHTML = xhr.response
 	}
 
 	fetchVisits(page) {
