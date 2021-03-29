@@ -19,6 +19,12 @@ class UsersController < ApplicationController
     render json: { users: @users.page(page), total_pages: total_pages }, status: :ok
   end
 
+  def search
+    @users = User.where("name LIKE ?", "%#{params[:search]}%")
+
+    render json: { users: @users.page(params[:page]), total_pages: total_pages }, status: :ok
+  end
+
   def create
     User.create!(user_params)
 

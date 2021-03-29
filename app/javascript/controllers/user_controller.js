@@ -2,7 +2,8 @@ import { Controller } from "stimulus";
 import Rails from "@rails/ujs";
 
 export default class extends Controller {
-	static targets = ["table", "modal", "last", "save", "saveUser", "edit", "delete", "name", "title", "email", "phone", "status"];
+	static targets = ["form", "table", "modal", "last", "save", "saveUser", "edit", "delete", "name", "title", "email", "phone", "status"];
+	timeout;
 
 	initialize() {
 		this.render()
@@ -10,6 +11,25 @@ export default class extends Controller {
 
 	render() {
 		this.fetchVisits(1)
+	}
+
+	search() {
+		// console.log("dkfjdkjf")
+		clearTimeout(this.timeout);
+		this.timeout = setTimeout(() => {
+			Rails.fire(this.formTarget, 'submit')
+		}, 200)
+	}
+
+	handleSearchResults() {
+		const [data, status, xhr] = event.detail;
+		console.log("response", JSON.parse(xhr.response).users);
+		const users = JSON.parse(xhr.response).users;
+		$("#table > tbody:nth-child(2)").remove();
+		this.displayUsers(users)
+
+		// this.displayUsers()
+		// this.resultsTarget.innerHTML = xhr.response
 	}
 
 	fetchVisits(page) {
@@ -116,9 +136,9 @@ export default class extends Controller {
 
 		let button = '';
 		if (dset.userId === undefined) {
-			button += `<button style="display: block; margin: auto; margin-bottom: 10px; width: 100%" class="btn btn-primary" data-user-target="save" data-user-id="${userId}" data-handle="create" data-action="click->user#handleUserSuccess">Save</button>`;
+			button += `<button style="margin: auto;" class="btn btn-primary mb-3 d-block w-100 d-block" data-user-target="save" data-user-id="${userId}" data-handle="create" data-action="click->user#handleUserSuccess">Save</button>`;
 		} else {
-			button += `<button style="display: block; margin: auto; margin-bottom: 10px; width: 100%" class="btn btn-primary" data-user-target="save" data-user-id="${userId}" data-handle="update" data-action="click->user#handleUserSuccess">Update</button>`;
+			button += `<button style="margin: auto;" class="btn btn-primary mb-3 d-block w-100" data-user-target="save" data-user-id="${userId}" data-handle="update" data-action="click->user#handleUserSuccess">Update</button>`;
 		}
 
 		this.saveUserTarget.insertAdjacentHTML('beforeend', button)
