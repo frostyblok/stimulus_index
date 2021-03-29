@@ -49,6 +49,9 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 
+  # Use factory bot methods
+  config.include FactoryBot::Syntax::Methods
+
   # Database cleaner
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
