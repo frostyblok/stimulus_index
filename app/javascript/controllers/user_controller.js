@@ -114,8 +114,8 @@ export default class extends Controller {
 								<td class="${user.status === 'active' ? 'bg-success' : 'bg-danger' }">${ user.status }</td>
 								<td>
 									<div>
-										<button type="button" class="btn btn-secondary" data-action="click->user#openModal" data-user-target="edit" data-user-id="${user.id}">Edit</button>
-										<button type="button" class="btn btn-danger" data-action="click->user#openDeleteModal" data-user-target="delete" data-user-id="${ user.id }">Delete</button>
+										<button type="button" class="btn btn-secondary edit-user" data-action="click->user#openModal" data-user-target="edit" data-user-id="${user.id}">Edit</button>
+										<button type="button" class="btn btn-danger delete-user" data-action="click->user#openDeleteModal" data-user-target="delete" data-user-id="${ user.id }">Delete</button>
 									</div>
 								</td>
 							</tr>`;
@@ -132,9 +132,9 @@ export default class extends Controller {
 
 		let button = '';
 		if (dset.userId === undefined) {
-			button += `<button style="margin: auto;" class="btn btn-primary mb-3 d-block w-100 d-block" data-user-target="save" data-user-id="${userId}" data-handle="create" data-action="click->user#handleUserSuccess">Save</button>`;
+			button += `<button style="margin: auto;" class="btn btn-primary mb-3 d-block w-100 d-block save-user" data-user-target="save" data-user-id="${userId}" data-handle="create" data-action="click->user#handleUserSuccess">Save</button>`;
 		} else {
-			button += `<button style="margin: auto;" class="btn btn-primary mb-3 d-block w-100" data-user-target="save" data-user-id="${userId}" data-handle="update" data-action="click->user#handleUserSuccess">Update</button>`;
+			button += `<button style="margin: auto;" class="btn btn-primary mb-3 d-block w-100 update-user" data-user-target="save" data-user-id="${userId}" data-handle="update" data-action="click->user#handleUserSuccess">Update</button>`;
 		}
 
 		this.saveUserTarget.insertAdjacentHTML('beforeend', button)

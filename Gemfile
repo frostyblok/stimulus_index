@@ -38,6 +38,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 4.0'
 end
 
 group :development do

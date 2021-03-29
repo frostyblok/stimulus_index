@@ -6,7 +6,7 @@
 				<%= form.text_field :search, data: { action: "input->user#search" }, class: 'form-control rounded', placeholder: "Search", aria: { label: "Search"}, autocomplete: "off" %>
 			</div>
 		<% end %>
-		<button class="btn btn-primary" data-action="click->user#openModal">Create New User</button>
+		<button class="btn btn-primary create-new-user" data-action="click->user#openModal">Create New User</button>
 	</div>
 
 
@@ -33,23 +33,23 @@
 			<div class="modal-content p-5">
 				<div class="form-group">
 					<p>Name:</p>
-					<input class="form-control" type="text" data-user-target="name" placeholder="John Snow" />
+					<input class="form-control" name="name" type="text" data-user-target="name" placeholder="John Snow" />
 				</div>
 				<div class="form-group">
 					<p>Email:</p>
-					<input class="form-control" type="text" data-user-target="email" placeholder="john@snow.com" />
+					<input class="form-control" name="email" type="text" data-user-target="email" placeholder="john@snow.com" />
 				</div>
 				<div class="form-group">
 					<p>Title:</p>
-					<input class="form-control" type="text" data-user-target="title" placeholder="Mr" />
+					<input class="form-control" name="title" type="text" data-user-target="title" placeholder="Mr" />
 				</div>
 				<div class="form-group">
 					<p>Phone:</p>
-					<input class="form-control" type="text" data-user-target="phone" placeholder="5478923438473" />
+					<input class="form-control" name="phone" type="text" data-user-target="phone" placeholder="5478923438473" />
 				</div>
 				<div class="form-group">
 					<p>Status:</p>
-					<input class="form-control" type="text" data-user-target="status" placeholder="active or inactive" />
+					<input class="form-control" name="status" type="text" data-user-target="status" placeholder="active or inactive" />
 				</div>
 				<div class="save-button" data-user-target="saveUser">
 				</div>
@@ -70,7 +70,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-modal-name="delete-modal" data-action="click->user#closeModal">Close</button>
-					<button type="button" class="btn btn-primary" data-action="click->user#handleDeleteSuccess" data-user-target="save">Yes</button>
+					<button type="button" class="btn btn-primary confirm-delete" data-action="click->user#handleDeleteSuccess" data-user-target="save">Yes</button>
 				</div>
 			</div>
 		</div>
